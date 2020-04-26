@@ -1,112 +1,53 @@
-class DataReceived {
-  Future<List> incoming() async {
-    var newData = [
-      {
-        "id": "1",
-        "massage": "nidwe ni ihina yak'o  ",
-        "time": DateTime.now(),
-        "from": "user"
-      },
-      {"id": "2", "massage": "what is your name", "time": DateTime.now()},
-      {
-        "id": "3",
-        "massage": "are you friends with david ?",
-        "time": DateTime.now(),
-        "from": "user"
-      },
-      {"id": "4", "massage": "uli mwenzuma wa david ?", "time": DateTime.now()},
-      {
-        "id": "5",
-        "massage": "when where you born",
-        "time": DateTime.now(),
-        "from": "user"
-      },
-      {"id": "6", "massage": "wah hyalwa lili ?", "time": DateTime.now()},
-      {
-        "id": "7",
-        "massage": "who is the president of Zambia",
-        "time": DateTime.now(),
-        "from": "user"
-      },
-      {"id": "8", "massage": "nkuni muleli wa zambia", "time": DateTime.now()},
-      {
-        "id": "9",
-        "massage": "church",
-        "time": DateTime.now(),
-        "from": "user",
-      },
-      {
-        "id": "9",
-        "massage": "chikombelo",
-        "time": DateTime.now(),
-      },
-      {
-        "id": "1",
-        "massage": "nidwe ni ihina yak'o  ",
-        "time": DateTime.now(),
-        "from": "user"
-      },
-      {"id": "2", "massage": "what is your name", "time": DateTime.now()},
-      {
-        "id": "3",
-        "massage": "are you friends with david ?",
-        "time": DateTime.now(),
-        "from": "user"
-      },
-      {"id": "4", "massage": "uli mwenzuma wa david ?", "time": DateTime.now()},
-      {
-        "id": "5",
-        "massage": "when where you born",
-        "time": DateTime.now(),
-        "from": "user"
-      },
-      {"id": "6", "massage": "wah hyalwa lili ?", "time": DateTime.now()},
-      {
-        "id": "7",
-        "massage": "who is the president of Zambia",
-        "time": DateTime.now(),
-        "from": "user"
-      },
-      {"id": "8", "massage": "nkuni muleli wa zambia", "time": DateTime.now()},
-      {
-        "id": "9",
-        "massage": "church",
-        "time": DateTime.now(),
-        "from": "user",
-      },
-      {
-        "id": "9",
-        "massage": "chikombelo",
-        "time": DateTime.now(),
-      },
-       {
-        "id": "9",
-        "massage": "girl",
-        "time": DateTime.now(),
-         "from": "user"
-      },
-       {
-        "id": "9",
-        "massage": "mu kaintu",
-        "time": DateTime.now(),
-       
-      },
-       {
-        "id": "23",
-        "massage": "God",
-        "time": DateTime.now(),
-         "from": "user"
-      },
-       {
-        "id": "23",
-        "massage": "leza",
-        "time": DateTime.now(),
-       
-      },
+// import 'dart:convert';
 
-    ];
-    return newData;
+import 'package:http/http.dart';
+
+class DataSent {
+  static var ip = '192.168.1.100:4000/api';
+  final urls = "http://$ip/all-phrases";
+
+  // Future<List> incoming() async {
+  //   Response res = await get(urls);
+  //   // print(json.decode(res.body));
+  //   if (res.statusCode == 200) {
+  //     List<dynamic> body = jsonDecode(res.body).toList();
+  //     //  jsonDecode(res.body).toList();
+  //     // List body = decodes.();
+  //     print(body);
+  //     return body;
+  //   } else {
+  //     throw Exception('failed to get data');
+  //   }
+  //   // return ;
+  // }
+
+   Future <int> signup(firstName, lastName, phoneNumber, password) async {
+    final _url = 'http://$ip/auth/signup';
+    Response results =await post(
+      _url,
+      body: {
+        'firstName':firstName,
+        'lastName':lastName,
+        'phoneNumber': phoneNumber,
+        'password': password,
+      },
+    );
+      // var decodedData =jsonDecode(results.body);
+print("sign up responce ${results.statusCode}");
+    return  results.statusCode;
+  }
+    Future <int>login(phoneNumber, password) async {
+    final url = 'http://$ip/auth/signin';
+    Response results =await post(
+      url,
+      body: {
+     
+        'phoneNumber': phoneNumber,
+        'password': password,
+      },
+    );
+      // var decodedData =jsonDecode(results.body);
+print("login responce ${results.statusCode}");
+    return  results.statusCode;
   }
 }
-
-class DataSent {}
