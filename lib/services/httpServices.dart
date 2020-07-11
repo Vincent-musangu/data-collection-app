@@ -6,7 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart';
 
 class DataSent {
-  static var ip = '172.17.100.2:4000/api';
+  static var ip = '192.168.43.246:4000/api';
   final urls = "http://$ip/all-phrases";
   final transUrl = "http://$ip/phrases";
   final phraseUrl = "http://$ip/translate/phrase";
